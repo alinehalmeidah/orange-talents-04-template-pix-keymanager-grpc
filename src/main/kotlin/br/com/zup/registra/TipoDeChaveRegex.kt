@@ -2,7 +2,7 @@ package br.com.zup.registra
 
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator
 
-enum class TipoDeChave {
+enum class TipoDeChaveRegex {
     CPF {
         override fun valida(chave: String?): Boolean {
             if (chave.isNullOrBlank()) {
@@ -41,7 +41,7 @@ enum class TipoDeChave {
         override fun valida(chave: String?) = chave.isNullOrBlank() //Não deve ser preenchida
     },
 
-    UNKNOWN_TIPO_CHAVE {
+    UNKNOWN_TIPO_CHAVERegex {
         override fun valida(chave: String?): Boolean {
             return true
         }

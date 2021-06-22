@@ -18,7 +18,7 @@ import kotlin.reflect.KClass
 @Target(CLASS, TYPE)
 @Constraint(validatedBy = [ValidPixKeyValidator::class])
 annotation class ValidPixKey(
-    val message: String = "chave Pix invalida (\${validatedValue.tipoDeChave})",
+    val message: String = "chave Pix invalida (\${validatedValue.tipoDeChaveRegex})",
 
     val groups: Array<KClass<Any>> = [],
     val payload: Array<KClass<Payload>> = []
@@ -33,9 +33,9 @@ class ValidPixKeyValidator : ConstraintValidator<ValidPixKey, NovaChavePix> {
         context: ConstraintValidatorContext?
     ): Boolean {
 
-        if (value?.tipoDeChave == null) {
+        if (value?.tipoDeChaveRegex == null) {
             return false
         }
-        return value.tipoDeChave.valida(value.chave)
+        return value.tipoDeChaveRegex.valida(value.chave)
     }
 }
