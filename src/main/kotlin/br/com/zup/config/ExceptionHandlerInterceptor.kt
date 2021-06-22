@@ -8,9 +8,6 @@ import org.slf4j.LoggerFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/*
-Classe responsavel por interceptar as exceptions lançadas pelos endpoints
- */
 @Singleton
 class ExceptionHandlerInterceptor(@Inject private val resolver: ExceptionHandlerResolver) :
     MethodInterceptor<BindableService, Any?> {
