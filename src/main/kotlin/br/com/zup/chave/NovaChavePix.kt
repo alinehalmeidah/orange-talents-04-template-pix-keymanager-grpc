@@ -18,12 +18,12 @@ data class NovaChavePix(
     @field:Size(max = 77) val chave: String
 ) {
 
-    fun toModel(conta: ContaAssociada,bcbResponse: CadastraChavePixResponse): ChavePix{
+    fun toModel(conta: ContaAssociada): ChavePix{
         return ChavePix(
             clientId = UUID.fromString(this.clienteId),
-            tipodeChaveRegex = TipoDeChaveRegex.valueOf(this.tipoDeChaveRegex!!.name),
+            tipodeChave = TipoDeChaveRegex.valueOf(this.tipoDeChaveRegex!!.name),
             tipoDeConta = TipoDeConta.valueOf(this.tipoDeConta!!.name),
-            chave = bcbResponse.key,
+            chave = if(this.tipoDeChaveRegex == TipoDeChaveRegex.RANDOM) UUID.randomUUID().toString() else this.chave,
             conta = conta
         )
     }

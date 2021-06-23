@@ -37,7 +37,7 @@ enum class TipoDeChaveRegex {
         }
     },
 
-    ALEATORIA {
+    RANDOM {
         override fun valida(chave: String?) = chave.isNullOrBlank() //Não deve ser preenchida
     },
 
