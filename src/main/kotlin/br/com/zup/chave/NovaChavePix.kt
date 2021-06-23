@@ -1,5 +1,6 @@
 package br.com.zup.chave
 
+import br.com.zup.client.CadastraChavePixResponse
 import br.com.zup.grpc.TipoDeConta
 import br.com.zup.registra.TipoDeChaveRegex
 import br.com.zup.utils.ValidUUID
@@ -17,14 +18,16 @@ data class NovaChavePix(
     @field:Size(max = 77) val chave: String
 ) {
 
-    fun toModel(conta: ContaAssociada): ChavePix{
+    fun toModel(conta: ContaAssociada,bcbResponse: CadastraChavePixResponse): ChavePix{
         return ChavePix(
             clientId = UUID.fromString(this.clienteId),
             tipodeChaveRegex = TipoDeChaveRegex.valueOf(this.tipoDeChaveRegex!!.name),
             tipoDeConta = TipoDeConta.valueOf(this.tipoDeConta!!.name),
-            chave = if(this.tipoDeChaveRegex == TipoDeChaveRegex.ALEATORIA) UUID.randomUUID().toString() else this.chave,
+            chave = bcbResponse.key,
             conta = conta
         )
     }
+
+
 
 }
