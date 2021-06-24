@@ -1,8 +1,10 @@
-package br.com.zup.client
+package br.com.zup.consulta
 
 import br.com.zup.Instituicoes
 import br.com.zup.chave.ContaAssociada
-import br.com.zup.consulta.ChavePixInfo
+import br.com.zup.client.AccountType
+import br.com.zup.client.BankAccount
+import br.com.zup.client.Owner
 import br.com.zup.grpc.TipoDeConta
 import br.com.zup.registra.TipoDeChaveRegex
 import java.time.LocalDateTime
@@ -13,8 +15,7 @@ class ConsultaChavePixResponse(
     val bankAccount: BankAccount,
     val owner: Owner,
     val createdAt: LocalDateTime
-)
-{
+) {
     fun toModel(): ChavePixInfo {
         return ChavePixInfo(
             tipoDeChave = keyType,
@@ -28,8 +29,9 @@ class ConsultaChavePixResponse(
                 nomeDoTitular = owner.name,
                 cpfDoTitular = owner.taxIdNumber,
                 agencia = bankAccount.branch,
-                numeroDaConta = bankAccount.accountNumber
-            )
+                numeroDaConta = bankAccount.accountNumber,
+
+                )
 
         )
     }

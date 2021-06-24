@@ -16,8 +16,8 @@ service KeymanagerRemoveGrpcService {
   rpc remove (RemoveChavePixRequest) returns (RemoveChavePixResponse) {}
 }
 
-service KeymanagerCarregaGrpcService {
-  rpc carrega (CarregaChavePixRequest) returns (CarregaChavePixResponse) {}
+service KeymanagerConsultaGrpcService {
+  rpc consulta (ConsultaChavePixRequest) returns (ConsultaChavePixResponse) {}
 }
 
 service KeymanagerListaGrpcService {
@@ -61,7 +61,7 @@ message RemoveChavePixResponse {
   string pixId = 2;
 }
 
-message CarregaChavePixRequest {
+message ConsultaChavePixRequest {
   message FiltroPorPix {
     string clientId = 1;
     string pixId = 2;
@@ -72,7 +72,7 @@ message CarregaChavePixRequest {
   }
 }
 
-message CarregaChavePixResponse {
+message ConsultaChavePixResponse {
   message ChavePix {
     message ContaInfo {
       TipoDeConta tipoDeConta = 1;
