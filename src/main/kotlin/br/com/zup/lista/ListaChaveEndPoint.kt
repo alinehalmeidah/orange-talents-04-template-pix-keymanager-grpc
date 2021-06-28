@@ -15,6 +15,8 @@ import javax.inject.Singleton
 class ListaChavePixEndPoint(@Inject private val repository: ChavePixRepository)
     : KeymanagerListaGrpcServiceGrpc.KeymanagerListaGrpcServiceImplBase(){
     override fun lista(request: ListaChavePixRequest?, responseObserver: StreamObserver<ListaChavePixResponse>?) {
+        if (request?.clientId.isNullOrBlank())
+            throw IllegalArgumentException("Cliente ID não pode ser nulo ou vazio")
         val uuidClientId = UUID.fromString(request?.clientId)
         val chaves = repository.findByClientId(uuidClientId).map {
             ListaChavePixResponse.ChavePix.newBuilder()
